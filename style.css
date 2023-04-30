@@ -1,0 +1,22 @@
+.header{
+	color: #073042;
+	text-align: center;
+}
+
+.link{
+	color: #3d4043;
+	background: #e5f6ff;
+	display: inline-block;
+	padding: 20px;
+	margin: 5px;
+	width: 150px;
+	border-radius: 12px;
+	user-select: none;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.5s ease;
+}
+
+.link:hover{
+	background-color: #78bfb2;
+}
