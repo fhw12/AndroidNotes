@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+
+build.gradle
+<pre>
+dependencies {
+    implementation "androidx.navigation:navigation-compose:2.5.3"
+}
+</pre>
+
+<br>
+AppNavigation.kt
+<pre>
+sealed class NavRoute(val route: String){
+    object OnBoardScreen: NavRoute("OnboardScreen")
+    object AuthScreen: NavRoute("AuthScreen")
+    object MainScreen: NavRoute("MainScreen")
+}
+
+@Composable
+fun NavigationController() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = NavRoute.OnBoardScreen.route){
+        composable(NavRoute.OnBoardScreen.route){ OnboardScreen(navController, OnboardViewModel()) }
+        composable(NavRoute.AuthScreen.route){ AuthScreen(navController, AuthViewModel()) }
+        composable(NavRoute.MainScreen.route){ MainScreen(navController, MainViewModel()) }
+    }
+}
+</pre>
+
+<br>
+MainActivity.kt
+<pre>
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colors.background
+            ) {
+                NavigationController()
+            }
+        }
+    }
+}
+</pre>
+
+</body>
+</html>
